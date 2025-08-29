@@ -2,7 +2,7 @@
 
 ---
 
-![alt text](header.png)
+![alt text](boruntee_header.png)
 
 ---
 
