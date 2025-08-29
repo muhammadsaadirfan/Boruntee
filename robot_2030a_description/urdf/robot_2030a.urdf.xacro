@@ -1,0 +1,278 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot_2030a">
+
+    <!-- Load Simulated or Real Hardware Interfaces -->
+    <xacro:arg name="is_sim" default="true"/>
+
+    <!-- Include Gazebo Parameters -->
+    <xacro:include filename="$(find robot_2030a_description)/urdf/robot_2030a_gazebo.xacro" />
+
+    <!-- Include ros2_control Plugins -->
+    <xacro:include filename="$(find robot_2030a_description)/urdf/robot_2030a_ros2_control.xacro" />
+    
+    <!-- Useful XACRO Variables (Properties) -->
+    <xacro:property name="PI" value="3.14159265359" />
+    <xacro:property name="effort" value="30.0" />
+    <xacro:property name="velocity" value="10.0" />
+
+    <!-- Useful Macros -->
+    <xacro:macro name="default_inertial" params="mass">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="${mass}" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                     iyy="1.0" iyz="0.0"
+                     izz="1.0" />
+        </inertial>
+    </xacro:macro>
+
+
+    <xacro:macro name="default_transmission" params="number">
+        <transmission name="transmission_${number}">
+            <plugin>transmission_interface/SimpleTransmission</plugin>
+            <actuator name="motor_${number}" role="actuator1"/>
+            <joint name="joint_${number}"    role="joint1">
+                <mechanical_reduction>1.0</mechanical_reduction>
+            </joint>
+        </transmission>
+    </xacro:macro>
+
+
+    <!-- Links -->
+    <link name="world"/>
+
+    <!-- Base Link-->
+    <link name="base_link">
+        <xacro:default_inertial mass="1.0"/>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_2030a_description/meshes/base_link.dae"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_2030a_description/meshes/base_link.dae"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <!-- Link 1-->
+    <link name="link_1">
+        <xacro:default_inertial mass="1.0"/>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_2030a_description/meshes/link_1.dae"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_2030a_description/meshes/link_1.dae"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <!-- Link 2-->
+    <link name="link_2">
+        <xacro:default_inertial mass="1.0"/>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_2030a_description/meshes/link_2.dae"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_2030a_description/meshes/link_2.dae"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <!-- Link 3-->
+    <link name="link_3">
+        <xacro:default_inertial mass="1.0"/>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_2030a_description/meshes/link_3.dae"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_2030a_description/meshes/link_3.dae"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <!-- Link 4-->
+    <link name="link_4">
+        <xacro:default_inertial mass="1.0"/>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_2030a_description/meshes/link_4.dae"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_2030a_description/meshes/link_4.dae"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <!-- Link 5-->
+    <link name="link_5">
+        <xacro:default_inertial mass="1.0"/>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_2030a_description/meshes/link_5.dae"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_2030a_description/meshes/link_5.dae"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <!-- Link 5_A-->
+    <link name="link_5_a">
+        <xacro:default_inertial mass="1.0"/>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_2030a_description/meshes/link_5_a.dae"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_2030a_description/meshes/link_5_a.dae"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <!-- Link 6-->
+    <link name="link_6">
+        <xacro:default_inertial mass="1.0"/>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_2030a_description/meshes/link_6.dae"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_2030a_description/meshes/link_6.dae"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    
+
+    
+    <!-- virtual Joints -->  
+    <joint name="virtual_joint" type="fixed">
+        <parent link="world"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint> 
+
+
+    <!-- Joints 1 -->  
+    <joint name ="joint_1" type="revolute">
+        <parent link="base_link"/>
+        <child link = "link_1"/>
+        <origin xyz="0 0 0.2" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="-2.61799" upper="2.61799" effort="30" velocity="10"/>   <!-- -150 to 150 degress-->
+    </joint>
+
+
+    <!-- Joints 2 -->  
+    <joint name ="joint_2" type="revolute">
+        <parent link="link_1"/>
+        <child link = "link_2"/>
+        <origin xyz="0.18 -0.1 0.312" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-1.25664" upper="2.26893" effort="30" velocity="10"/>   <!-- -72 to 130 degress-->
+    </joint>
+
+
+    <!-- Joints 3 -->  
+    <joint name ="joint_3" type="revolute">
+        <parent link="link_2"/>
+        <child link = "link_3"/>
+        <origin xyz="0.0 0.01 0.8" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-3.97935" upper="1.0821" effort="30" velocity="10"/>   <!-- -228 to 62 degress-->
+    </joint>
+
+
+    <!-- Joints 4 -->  
+    <joint name ="joint_4" type="revolute">
+        <parent link="link_3"/>
+        <child link = "link_4"/>
+        <origin xyz="0.316 0.1425 0.135" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-1.5708" upper="1.5708" effort="30" velocity="10"/>   <!-- -90 to 90 degress-->
+    </joint>
+
+
+    <!-- Joints 5 -->  
+    <joint name ="joint_5" type="revolute">
+        <parent link="link_4"/>
+        <child link = "link_5"/>
+        <origin xyz="0.615 0.0 0.0" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-1.5708" upper="1.5708" effort="30" velocity="10"/>   <!-- -90 to 90 degress-->
+    </joint>
+
+
+    <!-- Joints 5_A -->  
+    <joint name ="joint_5_a" type="fixed">
+        <parent link="link_5"/>
+        <child link = "link_5_a"/>
+        <origin xyz="0.13 0.0035 0.00225" rpy="0 0 0"/>
+    </joint>
+
+
+    <!-- Joints 6 -->  
+    <joint name ="joint_6" type="revolute">
+        <parent link="link_5_a"/>
+        <child link = "link_6"/>
+        <origin xyz="0.018 0.0 0.0" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="0.0" upper="5.98648" effort="30" velocity="10"/>   <!-- 0 to 343 degress-->
+    </joint>
+
+
+
+    <!-- Transmissions-->
+    <xacro:default_transmission number="1"/>
+    <xacro:default_transmission number="2"/>
+    <xacro:default_transmission number="3"/>
+    <xacro:default_transmission number="4"/>
+    <xacro:default_transmission number="5"/>
+    <xacro:default_transmission number="6"/>
+
+    
+
+</robot>
